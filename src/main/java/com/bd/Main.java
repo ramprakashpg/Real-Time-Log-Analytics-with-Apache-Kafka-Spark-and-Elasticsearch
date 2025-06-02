@@ -4,8 +4,6 @@ import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class Main {
@@ -23,9 +21,9 @@ public class Main {
             producer.send(record, new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                    if(e != null){
+                    if (e != null) {
                         System.out.println(e.getMessage());
-                    }else{
+                    } else {
                         System.out.println("Message sent successfully");
                     }
                 }
@@ -33,7 +31,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Exception Occurred:" + e.getMessage());
         } finally {
-            if(producer != null){
+            if (producer != null) {
                 producer.close();
             }
         }
