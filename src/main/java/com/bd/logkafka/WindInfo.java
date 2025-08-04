@@ -1,10 +1,21 @@
 package com.bd.logkafka;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
 @NoArgsConstructor
 public class WindInfo {
-    private int speed;
+    @JsonProperty
+
+    private double speed;
+    @JsonProperty
+
     private int deg;
-    private int gust;
+    @JsonProperty
+
+    private double gust;
 }

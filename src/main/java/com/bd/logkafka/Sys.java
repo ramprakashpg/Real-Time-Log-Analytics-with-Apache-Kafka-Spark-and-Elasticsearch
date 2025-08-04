@@ -1,6 +1,5 @@
 package com.bd.logkafka;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,8 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cloudiness {
-    @JsonProperty
+public class Sys {
+    private int type;
+    private int id;
+    private String country;
+    private long sunrise;
+    private long sunset;
 
-    private int all;
 }
