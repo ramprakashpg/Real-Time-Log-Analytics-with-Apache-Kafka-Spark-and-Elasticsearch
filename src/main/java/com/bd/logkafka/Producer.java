@@ -1,11 +1,15 @@
 package com.bd.logkafka;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.IndexResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
 
 @Component
 public class Producer {
@@ -22,7 +26,7 @@ public class Producer {
     }
 
     @Scheduled(fixedRate = 6000)
-    private void sendData() {
+    private void sendData() throws IOException {
         String message = getWeatherData();
         kafkaTemplate.send("weather-logs", message);
     }

@@ -28,7 +28,9 @@ public class WeatherDTO {
 
     private WindInfo wind;
     @JsonProperty
+    private RainInfo rain;
 
+    @JsonProperty
     private Cloudiness clouds;
     @JsonProperty
 

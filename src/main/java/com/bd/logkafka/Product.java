@@ -1,15 +1,15 @@
 package com.bd.logkafka;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class RainInfo {
-    @JsonProperty("1h")
-
-    private int lh;
+public class Product {
+    private String hello;
+    private String name;
 }
