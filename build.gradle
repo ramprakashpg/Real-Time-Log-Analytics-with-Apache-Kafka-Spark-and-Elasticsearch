@@ -14,6 +14,9 @@ java {
 }
 
 configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
     compileOnly {
         extendsFrom annotationProcessor
     }
@@ -28,8 +31,6 @@ dependencies {
     implementation 'org.apache.kafka:kafka-streams'
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-
     compileOnly 'org.projectlombok:lombok'
     implementation("org.modelmapper:modelmapper:2.1.1")
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -38,6 +39,15 @@ dependencies {
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation("org.json:json:20250517")
+    implementation 'org.apache.spark:spark-core_2.12:3.5.5'
+// https://mvnrepository.com/artifact/org.apache.spark/spark-sql
+
+    implementation('org.apache.spark:spark-sql_2.12:3.5.5')
+    implementation 'org.glassfish.jersey.containers:jersey-container-servlet:3.0.2'
+    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'co.elastic.clients:elasticsearch-java:9.0.1'
+
 }
 
 tasks.named('bootBuildImage') {
