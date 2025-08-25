@@ -12,5 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class WeatherForecastDTO {
     private int queryCost;
-    private List<Location1> locations;
+    private List<WeatherLocation> locations;
 }
