@@ -1,4 +1,4 @@
-package com.bd.logkafka;
+package com.bd.dto.weather;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

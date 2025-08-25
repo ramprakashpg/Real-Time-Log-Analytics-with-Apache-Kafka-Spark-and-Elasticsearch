@@ -1,9 +1,8 @@
-package com.bd.logkafka;
+package com.bd.dto.weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -12,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class WeatherDTO {
 
-    @JsonProperty("coord")
     private Coordinates coord;
     @JsonProperty
     private List<Weather> weather;

@@ -1,10 +1,12 @@
-package com.bd.logkafka;
+package com.bd.dto.weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.scheduling.annotation.Scheduled;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @NoArgsConstructor
 @Getter
@@ -14,4 +16,10 @@ public class Coordinates {
     private double lon;
     @JsonProperty("lat")
     private double lat;
+    public Map<String, Double> toGeoPointMap() {
+        Map<String, Double> geoPoint = new HashMap<>();
+        geoPoint.put("lat", this.lat);
+        geoPoint.put("lon", this.lon);
+        return geoPoint;
+    }
 }

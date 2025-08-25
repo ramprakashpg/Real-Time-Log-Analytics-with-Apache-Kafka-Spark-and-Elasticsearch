@@ -1,4 +1,4 @@
-package com.bd.logkafka;
+package com.bd.dto.weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -8,14 +8,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Weather {
+public class WindInfo {
     @JsonProperty
 
-    private int id;
+    private double speed;
     @JsonProperty
-    private String main;
+
+    private int deg;
     @JsonProperty
-    private String description;
-    @JsonProperty
-    private String icon;
+
+    private double gust;
 }
