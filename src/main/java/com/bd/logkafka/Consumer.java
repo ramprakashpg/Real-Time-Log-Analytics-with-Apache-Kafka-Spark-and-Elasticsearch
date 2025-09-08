@@ -2,6 +2,7 @@ package com.bd.logkafka;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import com.bd.Environments;
 import com.bd.dto.CurrentDay;
 import com.bd.dto.WeatherLocation;
 import com.bd.dto.WeatherForecastDTO;
@@ -22,8 +23,8 @@ public class Consumer {
     @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void listen(String message) throws IOException {
         WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
-        String serverUrl = "http://localhost:9200";
-        String apiKey = "RWNEd29KZ0JkeUVxOVdIM2xNYnk6dDY1TGM3dHQ3NGMzRnAyQlNpbS1TZw==";
+        String serverUrl = Environments.URL.getValue();
+        String apiKey = Environments.apiKey.getValue();
         ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
                 .host(serverUrl)
                 .apiKey(apiKey)
@@ -33,23 +34,23 @@ public class Consumer {
         Random random = new Random();
         for (WeatherLocation location : data.getLocations()) {
             WeatherLogDto logDto = new WeatherLogDto();
-            Map<String, Double> geoPoint = new HashMap<>();
-            geoPoint.put("lat", location.getLatitude());
-            geoPoint.put("lon", location.getLongitude());
+           ;
             long id = random.nextLong();
-            createDTO(location, logDto, id, geoPoint);
-            System.out.println(logDto.getIndex());
+            createIndex(location, logDto, id);
             IndexResponse response = esClient.index(i -> i
                     .index(logDto.getIndex())
                     .id(String.valueOf(id))
                     .document(logDto)
             );
-            System.out.println("Indexed: " + logDto.getIndex());
+            System.out.println("Indexed: " + response.index());
         }
         esClient.close();
     }
 
-    private void createDTO(WeatherLocation location, WeatherLogDto logDto, long id, Map<String, Double> geoPoint) {
+    private void createIndex(WeatherLocation location, WeatherLogDto logDto, long id) {
+        Map<String, Double> geoPoint = new HashMap<>();
+        geoPoint.put("lat", location.getLatitude());
+        geoPoint.put("lon", location.getLongitude());
         CurrentDay currentDay = location.getDays().get(0);
         this.setLocationIndex(location, logDto);
         logDto.setId(id);
