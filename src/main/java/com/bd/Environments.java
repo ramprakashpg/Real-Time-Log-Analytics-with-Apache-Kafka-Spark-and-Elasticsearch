@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Environments {
 
-    apiKey("RWNEd29KZ0JkeUVxOVdIM2xNYnk6dDY1TGM3dHQ3NGMzRnAyQlNpbS1TZw=="),
-    URL("http://localhost:9200");
+    esApiKey("RWNEd29KZ0JkeUVxOVdIM2xNYnk6dDY1TGM3dHQ3NGMzRnAyQlNpbS1TZw=="),
+    weatherApi("V45ZEERQDA8GQECMQKEWXEXT2"),
+    esUrl("http://localhost:9200"),
+    weatherUrl("http://localhost:9200");
 
     @Getter
     private final String value;

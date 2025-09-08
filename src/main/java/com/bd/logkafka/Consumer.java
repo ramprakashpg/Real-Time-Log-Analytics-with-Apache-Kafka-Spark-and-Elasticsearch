@@ -23,8 +23,8 @@ public class Consumer {
     @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void listen(String message) throws IOException {
         WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
-        String serverUrl = Environments.URL.getValue();
-        String apiKey = Environments.apiKey.getValue();
+        String serverUrl = Environments.esUrl.getValue();
+        String apiKey = Environments.esApiKey.getValue();
         ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
                 .host(serverUrl)
                 .apiKey(apiKey)
@@ -34,11 +34,11 @@ public class Consumer {
         Random random = new Random();
         for (WeatherLocation location : data.getLocations()) {
             WeatherLogDto logDto = new WeatherLogDto();
-           ;
-            long id = random.nextLong();
-            createIndex(location, logDto, id);
+
+            long id = random.nextInt();
+            esIndexing(location, logDto, id);
             IndexResponse response = esClient.index(i -> i
-                    .index(logDto.getIndex())
+                    .index("weather_current")
                     .id(String.valueOf(id))
                     .document(logDto)
             );
@@ -47,12 +47,11 @@ public class Consumer {
         esClient.close();
     }
 
-    private void createIndex(WeatherLocation location, WeatherLogDto logDto, long id) {
+    private void esIndexing(WeatherLocation location, WeatherLogDto logDto, long id) {
         Map<String, Double> geoPoint = new HashMap<>();
         geoPoint.put("lat", location.getLatitude());
         geoPoint.put("lon", location.getLongitude());
         CurrentDay currentDay = location.getDays().get(0);
-        this.setLocationIndex(location, logDto);
         logDto.setId(id);
         logDto.setCityName(location.getResolvedAddress());
         logDto.setTimestamp(System.currentTimeMillis());
@@ -61,13 +60,10 @@ public class Consumer {
         logDto.setCurrentTemperature(currentDay.getTemp());
     }
 
-    private void setLocationIndex(WeatherLocation location, WeatherLogDto logDto) {
-        Map<String, String> locationMap = new HashMap<>();
-        locationMap.put("Cape Town, Western Cape, South Africa", "weather_logs_sa");
-        locationMap.put("Tokyo, Japan", "weather_logs_japan");
-        locationMap.put("Paris, Île-de-France, France", "weather_logs_france");
-        locationMap.put("London, England, United Kingdom", "weather_logs_uk");
-        logDto.setIndex(locationMap.get(location.getResolvedAddress()));
+    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
+    public void mongoClient(String message) {
+
+
     }
 
 }

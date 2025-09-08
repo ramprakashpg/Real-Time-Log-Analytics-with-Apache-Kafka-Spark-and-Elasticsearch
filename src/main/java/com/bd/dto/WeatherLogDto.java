@@ -14,7 +14,6 @@ public class WeatherLogDto {
     }
 
     private long id;
-    private String index;
     private Map<String, Double> location;
     private long timestamp;
     private double currentTemperature;
