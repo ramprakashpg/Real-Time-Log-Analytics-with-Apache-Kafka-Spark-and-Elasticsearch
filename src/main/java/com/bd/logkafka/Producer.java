@@ -1,5 +1,6 @@
 package com.bd.logkafka;
 
+import com.bd.Environments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -15,8 +16,10 @@ public class Producer {
 
     private String getWeatherData() {
         System.out.println("Fetching weather...");
-        String apiKey = "f20d9d0e7689817cc6be2d895054e464";
-//        String uri = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=f20d9d0e7689817cc6be2d895054e464";
+        String elements = "temp,feelslike";
+        String date = "2025-08-18T1:00:00";
+        String locations = "London%2CUK%7CParis%2CFrance%7CTokyo%2CJapan%7CCape%20Town%2C%20South%20Africa";
+        String uri = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timelinemulti?key=" + Environments.weatherApi.getValue() + "&locations=" + locations + "&datestart=" + date + "&elements=" + elements;
         RestTemplate template = new RestTemplate();
         String dummyResponse = "{\n" +
                 "    \"queryCost\": 4,\n" +
@@ -83,7 +86,7 @@ public class Producer {
                 "        }\n" +
                 "    ]\n" +
                 "}";
-//        ResponseEntity<String> response = template.getForEntity(dummyResponse, String.class);
+//        ResponseEntity<String> response = template.getForEntity(uri, String.class);
         return dummyResponse;
     }
 
