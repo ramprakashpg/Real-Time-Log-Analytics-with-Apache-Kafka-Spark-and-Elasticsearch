@@ -7,7 +7,9 @@ import com.bd.dto.CurrentDay;
 import com.bd.dto.WeatherLocation;
 import com.bd.dto.WeatherForecastDTO;
 import com.bd.dto.WeatherLogDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +21,13 @@ import java.util.Random;
 @Component
 public class Consumer {
     ObjectMapper mapper = new ObjectMapper();
+    Random random = new Random();
 
-    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
+    @Autowired
+    WeatherRepository weatherRepository;
+
+
+    //    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void listen(String message) throws IOException {
         WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
         String serverUrl = Environments.esUrl.getValue();
@@ -31,7 +38,6 @@ public class Consumer {
         );
 
 
-        Random random = new Random();
         for (WeatherLocation location : data.getLocations()) {
             WeatherLogDto logDto = new WeatherLogDto();
 
@@ -61,7 +67,10 @@ public class Consumer {
     }
 
     @KafkaListener(topics = "weather-logs", groupId = "weather-group")
-    public void mongoClient(String message) {
+    public void mongoClient(String message) throws JsonProcessingException {
+        WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
+        weatherRepository.save(data);
+        System.out.println("Logged to Mongo...");
 
     }
 
