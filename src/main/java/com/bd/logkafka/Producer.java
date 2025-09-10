@@ -1,6 +1,7 @@
 package com.bd.logkafka;
 
 import com.bd.Environments;
+import com.bd.dto.WeatherForecastDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -8,19 +9,31 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.web.reactive.function.client.WebClient;
+
 
 @Component
 public class Producer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'H:mm:ss");
+
+    private final WebClient webClient;
+
+    public Producer(WebClient.Builder builder) {
+        this.webClient = builder.baseUrl("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services").build();
+    }
+
 
     private String getWeatherData() {
         System.out.println("Fetching weather...");
+        LocalDateTime currentDateAndTime = LocalDateTime.now();
+        String currentDate = currentDateAndTime.format(formatter);
         String elements = "temp,feelslike";
-        String date = "2025-08-18T1:00:00";
-        String locations = "London%2CUK%7CParis%2CFrance%7CTokyo%2CJapan%7CCape%20Town%2C%20South%20Africa";
-        String uri = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timelinemulti?key=" + Environments.weatherApi.getValue() + "&locations=" + locations + "&datestart=" + date + "&elements=" + elements;
-        RestTemplate template = new RestTemplate();
+        String locations = "London,UK|Paris,France|Tokyo,Japan|Cape Town,South Africa";
         String dummyResponse = "{\n" +
                 "    \"queryCost\": 4,\n" +
                 "    \"locations\": [\n" +
@@ -86,8 +99,18 @@ public class Producer {
                 "        }\n" +
                 "    ]\n" +
                 "}";
-//        ResponseEntity<String> response = template.getForEntity(uri, String.class);
         return dummyResponse;
+//        return webClient.get()
+//                .uri(uriBuilder -> uriBuilder
+//                        .path("/timelinemulti")
+//                        .queryParam("key", Environments.weatherApi.getValue())
+//                        .queryParam("locations", locations)
+//                        .queryParam("datestart", currentDate)
+//                        .queryParam("elements", elements)
+//                        .build())
+//                .retrieve()
+//                .bodyToMono(String.class)
+//                .block();
     }
 
     @Scheduled(fixedRate = 6000)

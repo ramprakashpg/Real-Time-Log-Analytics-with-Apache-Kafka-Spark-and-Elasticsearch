@@ -63,7 +63,6 @@ public class Consumer {
     @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void mongoClient(String message) {
 
-
     }
 
 }
