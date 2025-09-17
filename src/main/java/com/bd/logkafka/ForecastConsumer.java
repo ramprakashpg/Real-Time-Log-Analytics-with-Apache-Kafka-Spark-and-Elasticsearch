@@ -3,24 +3,22 @@ package com.bd.logkafka;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import com.bd.Environments;
-import com.bd.dto.WeatherLocation;
 import com.bd.dto.WeatherForecastDTO;
 import com.bd.dto.WeatherLogDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.util.List;
 
-@Repository
+@Component
 @AllArgsConstructor
-public class Consumer {
+public class ForecastConsumer {
     ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
@@ -28,9 +26,8 @@ public class Consumer {
 
     WeatherService weatherService;
 
-
-    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
-    public void listen(String message) throws IOException {
+    @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
+    private void listener(String message) throws IOException {
         JsonNode root = mapper.readTree(message);
         JsonNode locations = root.get("locations");
 
@@ -44,24 +41,16 @@ public class Consumer {
 
         for (int index = 0; index < locations.size(); index++) {
             JsonNode eachLocation = locations.get(index);
-            WeatherLogDto logDto = weatherService.esIndexing(eachLocation);
+            WeatherForecastDTO forecast = weatherService.esIndexingForecast(eachLocation);
             IndexResponse response = esClient.index(i -> i
-                    .index("weather_current")
-                    .id(String.valueOf(logDto.getId()))
-                    .document(logDto)
+                    .index("weather_forecast")
+                    .id(String.valueOf(forecast.getId()))
+                    .document(forecast)
             );
-            System.out.println("Indexed: " + eachLocation.get(""));
+            System.out.println("Indexed: " + eachLocation.get("resolvedAddress"));
         }
         esClient.close();
     }
 
-
-    //    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
-    public void mongoClient(String message) throws JsonProcessingException {
-        WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
-        weatherRepository.save(data);
-        System.out.println("Logged to Mongo...");
-
-    }
 
 }
