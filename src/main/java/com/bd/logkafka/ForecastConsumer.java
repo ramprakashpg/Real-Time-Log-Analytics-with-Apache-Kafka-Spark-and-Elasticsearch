@@ -23,34 +23,16 @@ public class ForecastConsumer {
 
     @Autowired
     WeatherRepository weatherRepository;
-
     WeatherService weatherService;
 
     @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
     private void listener(String message) throws IOException {
         JsonNode root = mapper.readTree(message);
         JsonNode locations = root.get("locations");
-
-//        WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
-        String serverUrl = Environments.esUrl.getValue();
-        String apiKey = Environments.esApiKey.getValue();
-        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
-                .host(serverUrl)
-                .apiKey(apiKey)
-        );
-
         for (int index = 0; index < locations.size(); index++) {
             JsonNode eachLocation = locations.get(index);
-            WeatherForecastDTO forecast = weatherService.esIndexingForecast(eachLocation);
-            IndexResponse response = esClient.index(i -> i
-                    .index("weather_forecast")
-                    .id(String.valueOf(forecast.getId()))
-                    .document(forecast)
-            );
-            System.out.println("Indexed: " + eachLocation.get("resolvedAddress"));
+            weatherService.esIndexingForecast(eachLocation);
         }
-        esClient.close();
     }
-
 
 }

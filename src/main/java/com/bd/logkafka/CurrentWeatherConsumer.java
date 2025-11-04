@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import scala.collection.mutable.HashTable;
 
 import java.io.IOException;
 
@@ -20,9 +21,6 @@ import java.io.IOException;
 @AllArgsConstructor
 public class CurrentWeatherConsumer {
     ObjectMapper mapper = new ObjectMapper();
-
-    @Autowired
-    WeatherRepository weatherRepository;
 
     WeatherService weatherService;
 
@@ -39,7 +37,6 @@ public class CurrentWeatherConsumer {
                 .host(serverUrl)
                 .apiKey(apiKey)
         );
-
         for (int index = 0; index < locations.size(); index++) {
             JsonNode eachLocation = locations.get(index);
             WeatherLogDto logDto = weatherService.esIndexing(eachLocation);
@@ -57,9 +54,8 @@ public class CurrentWeatherConsumer {
     //    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void mongoClient(String message) throws JsonProcessingException {
         WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
-        weatherRepository.save(data);
+        weatherService.indexRawData(data);
         System.out.println("Logged to Mongo...");
 
     }
-
 }

@@ -17,5 +17,6 @@ public class WeatherForecastDTO {
     private long forecasted_at;
     private Map<String, Double> location;
     private String cityName;
-    private List<TemperatureForecast> temperature;
+    private long timestamp;
+    private double temp;
 }
