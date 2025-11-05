@@ -1,6 +1,7 @@
 package com.bd.Consumer;
 
 import com.bd.Repository.WeatherRepository;
+import com.bd.service.WeatherForecastService;
 import com.bd.service.WeatherService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +19,7 @@ public class ForecastConsumer {
 
     @Autowired
     WeatherRepository weatherRepository;
-    WeatherService weatherService;
+    WeatherForecastService weatherForecastService;
 
     @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
     private void listener(String message) throws IOException {
@@ -26,7 +27,7 @@ public class ForecastConsumer {
         JsonNode locations = root.get("locations");
         for (int index = 0; index < locations.size(); index++) {
             JsonNode eachLocation = locations.get(index);
-            weatherService.esIndexingForecast(eachLocation);
+            weatherForecastService.esIndexingForecast(eachLocation);
         }
     }
 

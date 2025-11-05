@@ -9,16 +9,11 @@ import java.util.Map;
 @Getter
 @Setter
 @AllArgsConstructor
-public class WeatherLogDto {
-    public WeatherLogDto(){
+public class CurrentWeather extends WeatherDto {
+    public CurrentWeather() {
     }
-
-    private long id;
-    private Map<String, Double> location;
-    private long timestamp;
     private double currentTemperature;
     private double feelsLike;
-    private String cityName;
     private String countryCode;
 
 }

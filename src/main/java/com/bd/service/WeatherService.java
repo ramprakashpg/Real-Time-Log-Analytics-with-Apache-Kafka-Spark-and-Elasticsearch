@@ -1,8 +1,8 @@
 package com.bd.service;
 
-import com.bd.dto.WeatherForecastDTO;
-import com.bd.dto.WeatherLogDto;
-import com.bd.logkafka.ESClient;
+import com.bd.dto.ForecastWeather;
+import com.bd.dto.CurrentWeather;
+import com.bd.Client.ESClient;
 import com.bd.Repository.WeatherRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
@@ -32,8 +32,8 @@ public class WeatherService {
     ESClient esClient;
 
 
-    public WeatherLogDto esIndexing(JsonNode location) {
-        WeatherLogDto logDto = new WeatherLogDto();
+    public void esIndexing(JsonNode location) throws IOException {
+        CurrentWeather logDto = new CurrentWeather();
 
         long id = random.nextInt();
         Map<String, Double> geoPoint = getLocationMapping(location);
@@ -43,46 +43,17 @@ public class WeatherService {
         logDto.setLocation(geoPoint);
         logDto.setFeelsLike(location.get("days").get(0).get("feelslike").asDouble());
         logDto.setCurrentTemperature(location.get("days").get(0).get("temp").asDouble());
-        return logDto;
+        esClient.indexData(logDto, "weather_current");
     }
 
-    private @NotNull Map<String, Double> getLocationMapping(JsonNode location) {
+    protected @NotNull Map<String, Double> getLocationMapping(JsonNode location) {
         Map<String, Double> geoPoint = new HashMap<>();
         geoPoint.put("lat", location.get("latitude").asDouble());
         geoPoint.put("lon", location.get("longitude").asDouble());
         return geoPoint;
     }
 
-    public void esIndexingForecast(JsonNode location) throws IOException {
-        WeatherForecastDTO forecastData = new WeatherForecastDTO();
-        Map<String, Double> geoPoint = getLocationMapping(location);
-        forecastData.setCityName(location.get("resolvedAddress").asText());
-        forecastData.setLocation(geoPoint);
-        forecastData.setForecasted_at(System.currentTimeMillis());
-        JsonNode timestamps = location.get("days").get(0).get("hours");
-        for (int i = 0; i < timestamps.size(); i++) {
-            int id = abs(random.nextInt());
-            forecastData.setId(id);
-            long time = timestamps.get(i).get("datetimeEpoch").asLong() * 1000;
-            forecastData.setTemp(timestamps.get(i).get("temp").asDouble());
-            forecastData.setTimestamp(time);
-            esClient.indexData(forecastData);
-        }
-//        esClient.close();
-
-    }
-
-    private void setTemperature(String time, WeatherForecastDTO forecastData, String date) {
-//        String datetime = date + "T" + time;
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-//
-//        LocalDateTime ldt = LocalDateTime.parse(datetime, formatter);
-//        System.out.println(ldt);
-//        ZonedDateTime zdt = ldt.atZone(ZoneId.of("UTC"));
-
-    }
-
-    public void indexRawData(WeatherForecastDTO data) {
+    public void indexRawData(ForecastWeather data) {
         weatherRepository.save(data);
     }
 }

@@ -1,10 +1,10 @@
 package com.bd.Consumer;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.IndexResponse;
 import com.bd.Environments;
-import com.bd.dto.WeatherForecastDTO;
-import com.bd.dto.WeatherLogDto;
+import com.bd.dto.ForecastWeather;
+import com.bd.dto.CurrentWeather;
+import com.bd.dto.WeatherDto;
+import com.bd.Client.ESClient;
 import com.bd.service.WeatherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,37 +21,25 @@ public class CurrentWeatherConsumer {
     ObjectMapper mapper = new ObjectMapper();
 
     WeatherService weatherService;
+    ESClient esClient;
 
 
     @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void listen(String message) throws IOException {
         JsonNode root = mapper.readTree(message);
         JsonNode locations = root.get("locations");
-
-//        WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
-        String serverUrl = Environments.esUrl.getValue();
-        String apiKey = Environments.esApiKey.getValue();
-        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
-                .host(serverUrl)
-                .apiKey(apiKey)
-        );
         for (int index = 0; index < locations.size(); index++) {
             JsonNode eachLocation = locations.get(index);
-            WeatherLogDto logDto = weatherService.esIndexing(eachLocation);
-            IndexResponse response = esClient.index(i -> i
-                    .index("weather_current")
-                    .id(String.valueOf(logDto.getId()))
-                    .document(logDto)
-            );
-            System.out.println("Indexed: " + eachLocation.get(""));
+            weatherService.esIndexing(eachLocation);
+
         }
-        esClient.close();
+//        esClient.close();
     }
 
 
     //    @KafkaListener(topics = "weather-logs", groupId = "weather-group")
     public void mongoClient(String message) throws JsonProcessingException {
-        WeatherForecastDTO data = mapper.readValue(message, WeatherForecastDTO.class);
+        ForecastWeather data = mapper.readValue(message, ForecastWeather.class);
         weatherService.indexRawData(data);
         System.out.println("Logged to Mongo...");
 
