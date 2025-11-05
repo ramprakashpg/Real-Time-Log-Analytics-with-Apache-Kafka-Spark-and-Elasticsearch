@@ -25,7 +25,7 @@ public class ESClient {
         );
     }
 
-    protected void indexData(WeatherForecastDTO forecast) throws IOException {
+    public void indexData(WeatherForecastDTO forecast) throws IOException {
         System.out.println("Before Indexing: "+forecast.getTimestamp()+" "+forecast.getCityName());
         IndexResponse response = esClient.index(i -> i
                 .index("weather_forecast")

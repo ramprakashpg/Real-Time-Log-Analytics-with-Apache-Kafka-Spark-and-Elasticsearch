@@ -1,18 +1,13 @@
-package com.bd.logkafka;
+package com.bd.Consumer;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.IndexResponse;
-import com.bd.Environments;
-import com.bd.dto.WeatherForecastDTO;
-import com.bd.dto.WeatherLogDto;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.bd.Repository.WeatherRepository;
+import com.bd.service.WeatherService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 

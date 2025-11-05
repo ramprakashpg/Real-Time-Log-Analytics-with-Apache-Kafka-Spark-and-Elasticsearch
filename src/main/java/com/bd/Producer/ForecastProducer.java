@@ -1,6 +1,5 @@
-package com.bd.logkafka;
+package com.bd.Producer;
 
-import com.bd.Environments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;

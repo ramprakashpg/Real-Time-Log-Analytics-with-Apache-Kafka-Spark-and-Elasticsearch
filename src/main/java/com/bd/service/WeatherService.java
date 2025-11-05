@@ -1,7 +1,9 @@
-package com.bd.logkafka;
+package com.bd.service;
 
 import com.bd.dto.WeatherForecastDTO;
 import com.bd.dto.WeatherLogDto;
+import com.bd.logkafka.ESClient;
+import com.bd.Repository.WeatherRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,11 +19,10 @@ import java.util.Random;
 
 import static java.lang.Math.abs;
 
-
-@Component
-@Service
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
+@Service
 public class WeatherService {
     Random random = new Random();
     @Autowired

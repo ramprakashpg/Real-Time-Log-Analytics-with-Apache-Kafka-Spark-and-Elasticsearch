@@ -1,4 +1,4 @@
-package com.bd.logkafka;
+package com.bd.Repository;
 
 import com.bd.dto.WeatherForecastDTO;
 import org.springframework.data.mongodb.repository.MongoRepository;
