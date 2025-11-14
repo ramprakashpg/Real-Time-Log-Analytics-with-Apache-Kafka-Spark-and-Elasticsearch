@@ -1,0 +1,499 @@
+{
+  "queryCost": 4,
+  "locations": [
+    {
+      "queryCost": 1,
+      "latitude": 51.5064,
+      "longitude": -0.12719,
+      "resolvedAddress": "London, England, United Kingdom",
+      "address": "London,UK",
+      "timezone": "Europe/London",
+      "tzoffset": 1.0,
+      "days": [
+        {
+          "datetime": "2025-08-18",
+          "datetimeEpoch": 1755471600,
+          "tempmax": 71.7,
+          "tempmin": 62.9,
+          "temp": 66.7,
+          "feelslikemax": 71.7,
+          "feelslikemin": 62.9,
+          "feelslike": 66.7,
+          "dew": 55.9,
+          "humidity": 68.8,
+          "precip": 0.0,
+          "precipprob": 0.0,
+          "precipcover": 0.0,
+          "preciptype": null,
+          "snow": 0.0,
+          "snowdepth": 0.0,
+          "windgust": 16.1,
+          "windspeed": 11.1,
+          "winddir": 69.8,
+          "pressure": 1020.8,
+          "cloudcover": 0.8,
+          "visibility": 17.8,
+          "solarradiation": 74.8,
+          "solarenergy": 6.3,
+          "uvindex": 3.0,
+          "sunrise": "05:51:02",
+          "sunriseEpoch": 1755492662,
+          "sunset": "20:16:38",
+          "sunsetEpoch": 1755544598,
+          "moonphase": 0.83,
+          "conditions": "Clear",
+          "description": "Clear conditions throughout the day.",
+          "icon": "clear-day",
+          "stations": [
+            "D5621",
+            "UKM00003770",
+            "03781099999",
+            "03672099999",
+            "UKI0000EGWU",
+            "03772099999",
+            "03770099999"
+          ],
+          "source": "obs"
+        }
+      ],
+      "stations": {
+        "D5621": {
+          "distance": 11190.0,
+          "latitude": 51.535,
+          "longitude": 0.028,
+          "useCount": 0,
+          "id": "D5621",
+          "name": "DW5621 Upton Park UK",
+          "quality": 0,
+          "contribution": 0.0
+        },
+        "UKM00003770": {
+          "distance": 1018.0,
+          "latitude": 51.5,
+          "longitude": -0.117,
+          "useCount": 0,
+          "id": "UKM00003770",
+          "name": "ST JAMES PARK",
+          "quality": 84,
+          "contribution": 0.0
+        },
+        "03781099999": {
+          "distance": 23177.0,
+          "latitude": 51.3,
+          "longitude": -0.083,
+          "useCount": 0,
+          "id": "03781099999",
+          "name": "KENLEY AIRFIELD, UK",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "03672099999": {
+          "distance": 20808.0,
+          "latitude": 51.553,
+          "longitude": -0.418,
+          "useCount": 0,
+          "id": "03672099999",
+          "name": "NORTHOLT, UK",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "UKI0000EGWU": {
+          "distance": 20810.0,
+          "latitude": 51.553,
+          "longitude": -0.418,
+          "useCount": 0,
+          "id": "UKI0000EGWU",
+          "name": "NORTHOLT",
+          "quality": 86,
+          "contribution": 0.0
+        },
+        "03772099999": {
+          "distance": 23386.0,
+          "latitude": 51.478,
+          "longitude": -0.461,
+          "useCount": 0,
+          "id": "03772099999",
+          "name": "HEATHROW, UK",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "03770099999": {
+          "distance": 1019.0,
+          "latitude": 51.5,
+          "longitude": -0.117,
+          "useCount": 0,
+          "id": "03770099999",
+          "name": "ST JAMES PARK, UK",
+          "quality": 99,
+          "contribution": 0.0
+        }
+      }
+    },
+    {
+      "queryCost": 1,
+      "latitude": 48.8572,
+      "longitude": 2.34141,
+      "resolvedAddress": "Paris, Île-de-France, France",
+      "address": "Paris,France",
+      "timezone": "Europe/Paris",
+      "tzoffset": 2.0,
+      "days": [
+        {
+          "datetime": "2025-08-18",
+          "datetimeEpoch": 1755468000,
+          "tempmax": 83.6,
+          "tempmin": 60.4,
+          "temp": 72.2,
+          "feelslikemax": 82.5,
+          "feelslikemin": 60.4,
+          "feelslike": 72.1,
+          "dew": 55.1,
+          "humidity": 56.8,
+          "precip": 0.0,
+          "precipprob": 0.0,
+          "precipcover": 0.0,
+          "preciptype": null,
+          "snow": 0.0,
+          "snowdepth": 0.0,
+          "windgust": 19.3,
+          "windspeed": 7.9,
+          "winddir": 58.6,
+          "pressure": 1017.4,
+          "cloudcover": 23.3,
+          "visibility": 12.9,
+          "solarradiation": 78.3,
+          "solarenergy": 6.9,
+          "uvindex": 6.0,
+          "sunrise": "06:47:44",
+          "sunriseEpoch": 1755492464,
+          "sunset": "21:00:19",
+          "sunsetEpoch": 1755543619,
+          "moonphase": 0.83,
+          "conditions": "Partially cloudy",
+          "description": "Partly cloudy throughout the day.",
+          "icon": "partly-cloudy-day",
+          "stations": [
+            "75116008",
+            "78640001",
+            "75114001",
+            "95088001",
+            "C1292",
+            "07147099999"
+          ],
+          "source": "obs"
+        }
+      ],
+      "stations": {
+        "75116008": {
+          "distance": 7896.0,
+          "latitude": 48.855,
+          "longitude": 2.234,
+          "useCount": 0,
+          "id": "75116008",
+          "name": "LONGCHAMP",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "78640001": {
+          "distance": 13797.0,
+          "latitude": 48.773,
+          "longitude": 2.204,
+          "useCount": 0,
+          "id": "78640001",
+          "name": "VILLACOUBLAY",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "75114001": {
+          "distance": 3961.0,
+          "latitude": 48.822,
+          "longitude": 2.338,
+          "useCount": 0,
+          "id": "75114001",
+          "name": "PARIS-MONTSOURIS",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "95088001": {
+          "distance": 13786.0,
+          "latitude": 48.967,
+          "longitude": 2.428,
+          "useCount": 0,
+          "id": "95088001",
+          "name": "LE BOURGET",
+          "quality": 100,
+          "contribution": 0.0
+        },
+        "C1292": {
+          "distance": 6957.0,
+          "latitude": 48.812,
+          "longitude": 2.276,
+          "useCount": 0,
+          "id": "C1292",
+          "name": "CW1292 Coignieres FR",
+          "quality": 0,
+          "contribution": 0.0
+        },
+        "07147099999": {
+          "distance": 13787.0,
+          "latitude": 48.774,
+          "longitude": 2.202,
+          "useCount": 0,
+          "id": "07147099999",
+          "name": "VELIZY, FR",
+          "quality": 99,
+          "contribution": 0.0
+        }
+      }
+    },
+    {
+      "queryCost": 1,
+      "latitude": 35.6884,
+      "longitude": 139.69,
+      "resolvedAddress": "Tokyo, Japan",
+      "address": "Tokyo,Japan",
+      "timezone": "Asia/Tokyo",
+      "tzoffset": 9.0,
+      "days": [
+        {
+          "datetime": "2025-08-18",
+          "datetimeEpoch": 1755442800,
+          "tempmax": 97.6,
+          "tempmin": 81.2,
+          "temp": 87.5,
+          "feelslikemax": 111.3,
+          "feelslikemin": 88.3,
+          "feelslike": 96.5,
+          "dew": 75.0,
+          "humidity": 68.1,
+          "precip": 0.009,
+          "precipprob": 100.0,
+          "precipcover": 12.5,
+          "preciptype": [
+            "rain"
+          ],
+          "snow": 0.0,
+          "snowdepth": 0.0,
+          "windgust": 25.3,
+          "windspeed": 15.8,
+          "winddir": 145.7,
+          "pressure": 1014.3,
+          "cloudcover": 21.8,
+          "visibility": 11.1,
+          "solarradiation": 237.3,
+          "solarenergy": 20.5,
+          "uvindex": 8.0,
+          "sunrise": "05:02:20",
+          "sunriseEpoch": 1755460940,
+          "sunset": "18:27:31",
+          "sunsetEpoch": 1755509251,
+          "moonphase": 0.82,
+          "conditions": "Rain, Partially cloudy",
+          "description": "Partly cloudy throughout the day with rain.",
+          "icon": "rain",
+          "stations": [
+            "47662099999",
+            "JAW00043313",
+            "47670099999",
+            "47642043313",
+            "47680099999",
+            "47682099999"
+          ],
+          "source": "obs"
+        }
+      ],
+      "stations": {
+        "47662099999": {
+          "distance": 6985.0,
+          "latitude": 35.683,
+          "longitude": 139.767,
+          "useCount": 0,
+          "id": "47662099999",
+          "name": "TOKYO, JA",
+          "quality": 99,
+          "contribution": 0.0
+        },
+        "JAW00043313": {
+          "distance": 31485.0,
+          "latitude": 35.75,
+          "longitude": 139.35,
+          "useCount": 0,
+          "id": "JAW00043313",
+          "name": "FUSSA YOKOTA AB",
+          "quality": 85,
+          "contribution": 0.0
+        },
+        "47670099999": {
+          "distance": 28628.0,
+          "latitude": 35.433,
+          "longitude": 139.65,
+          "useCount": 0,
+          "id": "47670099999",
+          "name": "YOKOHAMA, JA",
+          "quality": 98,
+          "contribution": 0.0
+        },
+        "47642043313": {
+          "distance": 31485.0,
+          "latitude": 35.75,
+          "longitude": 139.35,
+          "useCount": 0,
+          "id": "47642043313",
+          "name": "FUSSA YOKOTA AB, JA",
+          "quality": 99,
+          "contribution": 0.0
+        },
+        "47680099999": {
+          "distance": 33099.0,
+          "latitude": 35.514,
+          "longitude": 139.394,
+          "useCount": 0,
+          "id": "47680099999",
+          "name": "KASTNER ARMY AIR FIELD CAMP ZAMA JAPAN, JA",
+          "quality": 94,
+          "contribution": 0.0
+        },
+        "47682099999": {
+          "distance": 38373.0,
+          "latitude": 35.6,
+          "longitude": 140.1,
+          "useCount": 0,
+          "id": "47682099999",
+          "name": "CHIBA, JA",
+          "quality": 98,
+          "contribution": 0.0
+        }
+      }
+    },
+    {
+      "queryCost": 1,
+      "latitude": -33.9191,
+      "longitude": 18.422,
+      "resolvedAddress": "Cape Town, Western Cape, South Africa",
+      "address": "Cape Town, South Africa\"   \"",
+      "timezone": "Africa/Johannesburg",
+      "tzoffset": 2.0,
+      "days": [
+        {
+          "datetime": "2025-08-18",
+          "datetimeEpoch": 1755468000,
+          "tempmax": 62.9,
+          "tempmin": 48.2,
+          "temp": 56.3,
+          "feelslikemax": 62.9,
+          "feelslikemin": 47.3,
+          "feelslike": 56.3,
+          "dew": 52.5,
+          "humidity": 87.6,
+          "precip": 0.016,
+          "precipprob": 100.0,
+          "precipcover": 4.17,
+          "preciptype": [
+            "rain"
+          ],
+          "snow": 0.0,
+          "snowdepth": 0.0,
+          "windgust": 16.1,
+          "windspeed": 18.3,
+          "winddir": 330.3,
+          "pressure": 1019.2,
+          "cloudcover": 47.9,
+          "visibility": 3.7,
+          "solarradiation": 137.8,
+          "solarenergy": 11.8,
+          "uvindex": 7.0,
+          "sunrise": "07:21:47",
+          "sunriseEpoch": 1755494507,
+          "sunset": "18:19:02",
+          "sunsetEpoch": 1755533942,
+          "moonphase": 0.83,
+          "conditions": "Rain, Partially cloudy",
+          "description": "Clearing in the afternoon with late afternoon rain.",
+          "icon": "rain",
+          "stations": [
+            "68816099999",
+            "68912099999",
+            "68813099999",
+            "68817099999",
+            "FACT",
+            "68819099999",
+            "F6172"
+          ],
+          "source": "obs"
+        }
+      ],
+      "stations": {
+        "68816099999": {
+          "distance": 17358.0,
+          "latitude": -33.965,
+          "longitude": 18.602,
+          "useCount": 0,
+          "id": "68816099999",
+          "name": "CAPE TOWN INTERNATIONAL, SF",
+          "quality": 99,
+          "contribution": 0.0
+        },
+        "68912099999": {
+          "distance": 27478.0,
+          "latitude": -34.15,
+          "longitude": 18.317,
+          "useCount": 0,
+          "id": "68912099999",
+          "name": "SLANGKOP, SF",
+          "quality": 65,
+          "contribution": 0.0
+        },
+        "68813099999": {
+          "distance": 14210.0,
+          "latitude": -33.8,
+          "longitude": 18.367,
+          "useCount": 0,
+          "id": "68813099999",
+          "name": "ROBBEN ISLAND, SF",
+          "quality": 61,
+          "contribution": 0.0
+        },
+        "68817099999": {
+          "distance": 2369.0,
+          "latitude": -33.9,
+          "longitude": 18.433,
+          "useCount": 0,
+          "id": "68817099999",
+          "name": "CAPE TOWN PORTNET, SF",
+          "quality": 66,
+          "contribution": 0.0
+        },
+        "FACT": {
+          "distance": 18233.0,
+          "latitude": -33.99,
+          "longitude": 18.6,
+          "useCount": 0,
+          "id": "FACT",
+          "name": "FACT",
+          "quality": 50,
+          "contribution": 0.0
+        },
+        "68819099999": {
+          "distance": 1655.0,
+          "latitude": -33.933,
+          "longitude": 18.417,
+          "useCount": 0,
+          "id": "68819099999",
+          "name": "MOLTENO RESERVIOR, SF",
+          "quality": 66,
+          "contribution": 0.0
+        },
+        "F6172": {
+          "distance": 10190.0,
+          "latitude": -33.923,
+          "longitude": 18.532,
+          "useCount": 0,
+          "id": "F6172",
+          "name": "ZS1OSS Cape Town ZA",
+          "quality": 0,
+          "contribution": 0.0
+        }
+      }
+    }
+  ]
+}
