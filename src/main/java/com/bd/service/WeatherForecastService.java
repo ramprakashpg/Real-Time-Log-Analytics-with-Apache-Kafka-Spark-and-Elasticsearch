@@ -1,10 +1,9 @@
 package com.bd.service;
 
+import com.bd.Client.ESClient;
 import com.bd.Repository.ForecastRepository;
 import com.bd.dto.ForecastEntity;
 import com.bd.dto.ForecastWeather;
-import com.bd.Client.ESClient;
-import com.bd.dto.MongoEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

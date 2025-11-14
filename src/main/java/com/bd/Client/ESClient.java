@@ -3,7 +3,6 @@ package com.bd.Client;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import com.bd.Environments;
-import com.bd.dto.ForecastWeather;
 import com.bd.dto.WeatherDto;
 import org.springframework.stereotype.Component;
 

@@ -1,10 +1,9 @@
 package com.bd.service;
 
-import com.bd.dto.MongoEntity;
-import com.bd.dto.WeatherEntity;
-import com.bd.dto.CurrentWeather;
 import com.bd.Client.ESClient;
 import com.bd.Repository.WeatherRepository;
+import com.bd.dto.CurrentWeather;
+import com.bd.dto.WeatherEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,8 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-import static java.lang.Math.abs;
 
 @AllArgsConstructor
 @NoArgsConstructor

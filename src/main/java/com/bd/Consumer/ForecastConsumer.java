@@ -3,7 +3,6 @@ package com.bd.Consumer;
 import com.bd.Client.MongoClient;
 import com.bd.Repository.WeatherRepository;
 import com.bd.service.WeatherForecastService;
-import com.bd.service.WeatherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,18 +1,16 @@
 package com.bd.Producer;
 
-import com.bd.Environments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import org.springframework.web.reactive.function.client.WebClient;
 
 
 @Component
@@ -43,7 +41,7 @@ public class CurrentWeatherProducer {
 //                .retrieve()
 //                .bodyToMono(String.class)
 //                .block();
-        return new String(Files.readAllBytes(Paths.get("src/main/java/com/bd/logkafka/currentWeatherMock.json")));
+        return new String(Files.readAllBytes(Paths.get("src/main/resources/mockData/currentWeatherMock.json")));
 
     }
 

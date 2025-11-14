@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -32,7 +32,7 @@ public class ForecastProducer {
         String currentDate = currentDateAndTime.format(formatter);
 //        String elements = "temp,feelslike";
         String locations = "London,UK|Paris,France|Tokyo,Japan|Cape Town,South Africa";
-        return new String(Files.readAllBytes(Paths.get("src/main/java/com/bd/logkafka/forecastMock.json")));
+        return new String(Files.readAllBytes(Paths.get("src/main/resources/mockData/forecastMock.json")));
 //        return webClient.get()
 //                .uri(uriBuilder -> uriBuilder
 //                        .path("/timelinemulti")
