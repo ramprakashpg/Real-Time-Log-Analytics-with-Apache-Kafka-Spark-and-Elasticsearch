@@ -1,7 +1,10 @@
 package com.bd.service;
 
+import com.bd.Repository.ForecastRepository;
+import com.bd.dto.ForecastEntity;
 import com.bd.dto.ForecastWeather;
 import com.bd.Client.ESClient;
+import com.bd.dto.MongoEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,8 @@ public class WeatherForecastService {
 
     @Autowired
     ESClient esClient;
+    @Autowired
+    private ForecastRepository forecastRepository;
 
 
     public void esIndexingForecast(JsonNode location) throws IOException {
@@ -42,6 +47,10 @@ public class WeatherForecastService {
         }
 //        esClient.close();
 
+    }
+
+    public void indexRawData(MongoEntity data) {
+        forecastRepository.save(data);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.bd.service;
 
-import com.bd.dto.ForecastWeather;
+import com.bd.dto.MongoEntity;
+import com.bd.dto.WeatherEntity;
 import com.bd.dto.CurrentWeather;
 import com.bd.Client.ESClient;
 import com.bd.Repository.WeatherRepository;
@@ -53,7 +54,7 @@ public class WeatherService {
         return geoPoint;
     }
 
-    public void indexRawData(ForecastWeather data) {
+    public void indexRawData(MongoEntity data) {
         weatherRepository.save(data);
     }
 }

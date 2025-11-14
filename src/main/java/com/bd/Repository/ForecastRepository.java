@@ -1,10 +1,10 @@
 package com.bd.Repository;
 
+import com.bd.dto.ForecastEntity;
 import com.bd.dto.MongoEntity;
-import com.bd.dto.WeatherEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WeatherRepository extends MongoRepository<MongoEntity, Integer> {
+public interface ForecastRepository extends MongoRepository<MongoEntity, Integer> {
 }

@@ -45,7 +45,7 @@ public class ForecastProducer {
 //                .bodyToMono(String.class)
 //                .block();
     }
-    @Scheduled(fixedRate = 6000)
+//    @Scheduled(fixedRate = 6000)
     private void publish() throws IOException {
         String weatherData = getWeatherData();
         kafkaTemplate.send("weather_logs_forecast",weatherData);

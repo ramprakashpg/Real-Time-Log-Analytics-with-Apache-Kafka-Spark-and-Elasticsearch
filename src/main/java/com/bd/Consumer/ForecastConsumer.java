@@ -1,8 +1,10 @@
 package com.bd.Consumer;
 
+import com.bd.Client.MongoClient;
 import com.bd.Repository.WeatherRepository;
 import com.bd.service.WeatherForecastService;
 import com.bd.service.WeatherService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -15,13 +17,14 @@ import java.io.IOException;
 @Component
 @AllArgsConstructor
 public class ForecastConsumer {
+    MongoClient mongoClient;
     ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     WeatherRepository weatherRepository;
     WeatherForecastService weatherForecastService;
 
-    @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
+//    @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
     private void listener(String message) throws IOException {
         JsonNode root = mapper.readTree(message);
         JsonNode locations = root.get("locations");
@@ -29,6 +32,10 @@ public class ForecastConsumer {
             JsonNode eachLocation = locations.get(index);
             weatherForecastService.esIndexingForecast(eachLocation);
         }
+    }
+    @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
+    private void mongoClient(String message) throws JsonProcessingException {
+        mongoClient.archivePush(message);
     }
 
 }
