@@ -26,7 +26,7 @@ public class MongoClient {
     private WeatherForecastService weatherForecastService;
 
     public void archivePush(String message) throws JsonProcessingException {
-        MongoEntity entity = new WeatherEntity();
+        WeatherEntity entity = new WeatherEntity();
         processData(message, entity);
         weatherService.indexRawData(entity);
         System.out.println("Current weather logged to Mongo...");
@@ -40,8 +40,8 @@ public class MongoClient {
         entity.setPayload(document);
     }
 
-    public void forecastArchivePush(String message){
-        MongoEntity entity = new ForecastEntity();
+    public void forecastArchivePush(String message) {
+        ForecastEntity entity = new ForecastEntity();
         processData(message, entity);
         weatherForecastService.indexRawData(entity);
         System.out.println("Forecast data logged to Mongo...");

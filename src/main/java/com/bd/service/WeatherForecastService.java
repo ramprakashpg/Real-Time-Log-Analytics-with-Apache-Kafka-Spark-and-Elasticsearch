@@ -49,7 +49,7 @@ public class WeatherForecastService {
 
     }
 
-    public void indexRawData(MongoEntity data) {
+    public void indexRawData(ForecastEntity data) {
         forecastRepository.save(data);
     }
 

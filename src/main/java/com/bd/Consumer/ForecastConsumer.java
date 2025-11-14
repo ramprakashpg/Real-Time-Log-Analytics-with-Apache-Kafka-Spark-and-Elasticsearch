@@ -35,7 +35,7 @@ public class ForecastConsumer {
     }
     @KafkaListener(topics = "weather_logs_forecast", groupId = "weather-forecast-group")
     private void mongoClient(String message) throws JsonProcessingException {
-        mongoClient.archivePush(message);
+        mongoClient.forecastArchivePush(message);
     }
 
 }

@@ -54,7 +54,7 @@ public class WeatherService {
         return geoPoint;
     }
 
-    public void indexRawData(MongoEntity data) {
+    public void indexRawData(WeatherEntity data) {
         weatherRepository.save(data);
     }
 }
